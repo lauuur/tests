@@ -1,8 +1,21 @@
 import React from "react";
 import {TiHeartFullOutline} from "react-icons/ti";
+  
+  class Test2 extends React.Component {
 
-const Test2 = () => {
-  return (
+    constructor(props) {
+      super(props);
+      this.state = {count: 0};
+      this.handleClick = this.handleClick.bind(this);
+    }
+  
+    handleClick = () => {
+      this.setState(prevState => {
+         return {count: prevState.count + 1};
+      });
+  };
+    render(){
+    return (
     <div>
       <div className={"description"}>
         Ülesanne 2:
@@ -11,15 +24,16 @@ const Test2 = () => {
         </p>
       </div>
 
-      <div style={{display:"flex", alignItems: "center"}}>
+      <div className="noselect" style={{display:"flex", alignItems: "center"}}>
         <div>
-          Likes: [replace me]
+          Likes: {this.state.count}
         </div>
-        <TiHeartFullOutline />
+        <TiHeartFullOutline onClick={this.handleClick.bind(this)}/>
         <div>Click me</div>
       </div>
     </div>
   );
-};
+  }
+}
 
 export default Test2;
