@@ -17,6 +17,18 @@ const ITEMS = [
   }
 ];
 
+const showList = () => (
+  <ul>
+    {ITEMS.map(item => (
+      <li key={item.id}>
+        <div>Name: {item.name}, Price: {item.price}</div>
+      </li>
+    ))}
+  </ul>
+);
+
+const totalPrice = ITEMS.reduce((totalItems, item) => totalItems + item.price, 0);
+
 const Test1 = () => {
   return (
     <div>
@@ -31,9 +43,9 @@ const Test1 = () => {
         <img style={{width: 200}} src={test1Example}/>
       </div>
       <div>
-        [replace me]
+        {showList()}
       </div>
-      <div><span className={"bold"}>Summa kokku:</span> [replace me]</div>
+      <div><span className={"bold"}>Summa kokku:</span> {totalPrice}</div>
     </div>
   );
 };
