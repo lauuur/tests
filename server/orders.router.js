@@ -8,5 +8,17 @@ router.get("/", async (req, res)=>{
   res.send(xs);
 });
 
+router.post("/test/5", (req, res)=>{
+  const order = new Order(req.body);
+  order.save(err =>{
+    if(err){
+      res.send(500);
+      return;
+    }
+    res.send(201);
+    console.log("asd");
+  }); 
+});
+
 module.exports = router;
 

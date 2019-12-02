@@ -1,17 +1,69 @@
 import React from "react";
 
 class Test7 extends React.PureComponent {
+  constructor(props){
+    super(props);
+    this.state = {
+        fullName: "",
+        address: "",
+        phoneNumber: "",
+    };
+}
+
+handleSubmit = (event) =>{
+  event.preventDefault();
+  console.log(this.state);
+  fetch("/api/v1/users", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state),
+  })
+  .then(res => res.json)
+  .catch(err =>{
+      console.log("error:", err);
+  });
+};
+
+handleChange = (e) =>{
+  this.setState({
+      [e.target.name]: e.target.value,
+  });
+};
+
   render() {
     return (
       <div>
         <Task />
-        implement
+        
+    <div className="ds">
+          <form className="ds-item style-2" >
+            <h3 className="style-2">Tellimuse vorm</h3>
+            <div className={"row"}>
+              <label htmlFor="fullName">Nimi</label>
+              <input name="fullName" value={this.state.fullName} type="text" onChange={this.handleChange} required/>
+            </div>
+            <div className={"row"}>
+              <label htmlFor="address">Elukoht</label>
+              <input name="address" value={this.state.address} type="text" onChange={this.handleChange} required/>
+            </div>
+            <div className={"row"}>
+            <label htmlFor="phoneNumber">Kontaktnumber</label>
+              <input name="phoneNumber" value={this.state.phoneNumber} type="text" onChange={this.handleChange} required/>
+            </div>
+            <button style={{width: "100%"}} onClick={this.handleSubmit}>
+              Esitan
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
 export default Test7;
+
 
 const Task = () => (
   <div>

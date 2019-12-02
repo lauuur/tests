@@ -8,7 +8,18 @@ router.get("/", async (req, res)=>{
   res.send(xs);
 });
 
-/** Add something here*/
+router.post("/", async (req, res) =>{
+  console.log(req.body);
+  const user1 = new User(req.body);
+  user1.save(err =>{
+      if(err){
+        console.log(err);
+          res.send(500);
+          return;
+      }
+      res.send(200);
+  });
+});
 
 module.exports = router;
 
