@@ -1,5 +1,5 @@
 import React from "react";
-import Orders from "./Orders.jsx";
+import Orders from "../Orders.jsx";
 // import {toast} from "react-toastify";
 // import PropTypes from "prop-types";
 
